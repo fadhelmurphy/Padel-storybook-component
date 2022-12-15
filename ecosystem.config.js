@@ -1,19 +1,18 @@
 module.exports = {
 	apps: [{
-		script: "npm",
+		name:"sb-build",
+		script: "serve",
 		watch: true,
 		instances: "max",
 		exec_mode: "cluster",
 		autorestart: true,
-		env_development: {
-			name: "sb-development",
+		env: {
+			PM2_SERVE_PATH: './storybook-static',
+			PM2_SERVE_PORT: 8080,
+			PM2_SERVE_SPA: 'true',
+			PM2_SERVE_HOMEPAGE: './index.html',
 			NODE_ENV: "development",
-			args: "local",
-		},
-		env_production: {
-			name: "sb-production",
-			NODE_ENV: "production",
-			args: "deploy-storybook",
+			args: "dev",
 		},
 	}],
 };
